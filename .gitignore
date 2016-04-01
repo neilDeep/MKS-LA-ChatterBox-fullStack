@@ -1,2 +1,5 @@
-node_modules
-bower_components
+## NPM ##
+server/node_modules
+
+## BOWER ##
+client/bower_components
