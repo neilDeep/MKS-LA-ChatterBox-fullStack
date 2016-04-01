@@ -1,17 +1,20 @@
 var app = {
   init: function(){
-
+    $('#send').on('submit', app.send);
   },
-  getMessages: function(){
+  send: function(){
+    var userInput = $('#message').val();
+    alert(userInput);
+    event.preventDefault();
+  },
+  fetch: function(){
 
   },
   displayMessages: function(){
 
   },
-  sendMessage: function(){
-
-  },
   handleSubmit: function(){
 
   }
+
 };

@@ -14,7 +14,7 @@ server.listen(port, ip);
 
 // Storage within Server for messages data
 var messages = [];
-// messages = [123,456,789]; // Dummy Data 4 Testing GET
+messages = [123,456,789]; // Dummy Data 4 Testing GET
 
 // Request Handler
 function handleRequest (request, response) {
