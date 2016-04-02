@@ -1,5 +1,3 @@
-// renamed server.js to index.js 4 nodemon
-
 // Require Node's http module
 var http =  require('http');
 
@@ -16,22 +14,29 @@ server.listen(port, ip);
 var messages = [];
 messages = [123,456,789]; // Dummy Data 4 Testing GET
 
+var headers = {
+  "access-control-allow-origin": '*',
+  "access-control-allow-headers": "content-type",
+  "access-control-allow-methods": 'GET, POST'
+};
+
 // Request Handler
 function handleRequest (request, response) {
+  response.writeHead(200, headers);
   if(request.method === 'GET'){
     if(request.url === '/'){
       console.log('request.method is: ', request.method);
-      response.end(JSON.stringify(messages)); // NEED to stringify response
+      response.end(JSON.stringify(messages)); // Server NEEDs to stringify response
     }
   }
   if(request.method === 'POST'){
     var data = '';
     if(request.url === '/'){
       console.log('request.method is: ', request.method);
-      request.on('data', function (chunk) {
+      request.on('data', function(chunk) {
         data += chunk;
       });
-      request.on('end', function () {
+      request.on('end', function() {
         messages.push(data);
         console.log("Data Recieved: " + data);
       });
