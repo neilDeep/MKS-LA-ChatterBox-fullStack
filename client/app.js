@@ -24,7 +24,8 @@ var app = {
       type: 'GET',
       'content-type': "application/json",
       success: function(data){ // the stringified messages array from server.js line 24
-        app.displayMessages(data);
+      console.log("Within fetch, data: ",JSON.parse(data));
+        app.displayMessages(JSON.parse(data));
       },
       error: function(){
         console.log("Error in Receiving Data");
@@ -32,15 +33,17 @@ var app = {
     });
   },
   displayMessages: function(data){
-    var parsedData = JSON.parse(data);
-    console.log (parsedData);
-    for(var i =0; i<parsedData.length; i++){
-          $('#messages').append(parsedData[i]+'<br>');
+    for(var i =0; i<data.length; i++) {
+          $('#messages').append(data[i].username+': '+data[i].message+'</br>');
         }
   },
   handleSubmit: function(){
-    var userInput = $('#message').val();
-    app.send(userInput);
+    var message = {
+      username: 'Neil',
+      message: $('#message').val()
+    }
+    console.log("Within displayMessages, data: ",message);
+    app.send(message);
   }
 
 };

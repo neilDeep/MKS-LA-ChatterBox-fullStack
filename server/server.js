@@ -11,8 +11,7 @@ console.log("Server Started & Listening on http://"+ip+":"+port);
 server.listen(port, ip);
 
 // Storage within Server for messages data
-var messages = [];
-messages = [123,456,789]; // Dummy Data 4 Testing GET
+var messages = []; // [{username: , message: },{}]
 
 var headers = {
   "access-control-allow-origin": '*',
@@ -37,8 +36,8 @@ function handleRequest (request, response) {
         data += chunk;
       });
       request.on('end', function() {
-        messages.push(data);
-        console.log("Data Recieved: " + data);
+        messages.push(JSON.parse(data));
+        console.log("Data Recieved: " + JSON.parse(data));
       });
     }
   }
